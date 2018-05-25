@@ -32,7 +32,6 @@ public class Task {
     @NotBlank
     private String description;
     
-    @NotBlank
     private double duration;
     
     @ManyToMany(mappedBy = "tasks")
