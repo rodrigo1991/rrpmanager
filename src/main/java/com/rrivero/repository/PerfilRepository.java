@@ -10,6 +10,6 @@ import com.rrivero.model.Perfil;
  */
 
 @RepositoryRestResource
-public interface GroupRepository extends JpaRepository<Perfil, Long> {
+public interface PerfilRepository extends JpaRepository<Perfil, Long> {
 
 }
