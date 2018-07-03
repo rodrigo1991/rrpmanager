@@ -33,7 +33,7 @@ public class User extends CommonBaseModel{
     @JoinTable(
         name = "tasks_users", 
         joinColumns = { @JoinColumn(name = "task_id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "project_id") }
+        inverseJoinColumns = { @JoinColumn(name = "user_id") }
     )
     Set<Task> tasks = new HashSet<>();
 
