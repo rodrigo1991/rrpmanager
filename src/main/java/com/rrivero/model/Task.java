@@ -17,10 +17,7 @@ import java.util.Set;
 @Table(name = "tasks")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"created", "modified"}, allowGetters = true)
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Task extends CommonBaseModel{
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "project_id")
@@ -36,24 +33,6 @@ public class Task {
     
     @ManyToMany(mappedBy = "tasks")
     Set<User> users = new HashSet<>();
-
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date created;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date modified;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Project getProject() {
 		return project;
@@ -93,22 +72,6 @@ public class Task {
 
 	public void setUsers(Set<User> projects) {
 		this.users = projects;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-	public Date getModified() {
-		return modified;
-	}
-
-	public void setModified(Date modified) {
-		this.modified = modified;
 	}
 
    

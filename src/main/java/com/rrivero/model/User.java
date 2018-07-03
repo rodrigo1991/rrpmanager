@@ -17,10 +17,7 @@ import java.util.Set;
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"created", "modified"}, allowGetters = true)
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends CommonBaseModel{
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "perfil_id")
@@ -39,24 +36,6 @@ public class User {
         inverseJoinColumns = { @JoinColumn(name = "project_id") }
     )
     Set<Task> tasks = new HashSet<>();
-
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date created;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date modified;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Perfil getPerfil() {
 		return perfil;
@@ -88,22 +67,6 @@ public class User {
 
 	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-	public Date getModified() {
-		return modified;
-	}
-
-	public void setModified(Date modified) {
-		this.modified = modified;
 	}
 
 }

@@ -15,12 +15,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "perfils")
-@EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"created", "modified"}, allowGetters = true)
-public class Perfil {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Perfil extends CommonBaseModel{
 
     @NotBlank
     private String name;
@@ -30,24 +26,6 @@ public class Perfil {
     
     @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL)
     Set<User> users = new HashSet<>();
-
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date created;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date modified;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -71,21 +49,5 @@ public class Perfil {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-	public Date getModified() {
-		return modified;
-	}
-
-	public void setModified(Date modified) {
-		this.modified = modified;
 	}
 }
