@@ -27,11 +27,11 @@ public class User extends CommonBaseModel{
     @NotBlank
     private String surname;
     
-    /*
+    /* patch
 	 *  {
-		"users":[
-				"users/3",
-				"users/4"
+			"tasks":[
+				"task/4",
+				"task/5"
 			]
 		}
      */
